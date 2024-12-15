@@ -1,0 +1,12 @@
+[
+  {
+    "group": "org.springframework",
+    "name": "spring-core",
+    "version": "5.3.10"
+  },
+  {
+    "group": "com.google.guava",
+    "name": "guava",
+    "version": "30.1-jre"
+  }
+]
