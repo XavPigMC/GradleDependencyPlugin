@@ -11,4 +11,8 @@ public class Dependency {
     private String group;
     private String name;
     private String version;
+
+    public String DependencyNotation(){
+        return group + ":" + name + ":" + version;
+    }
 }

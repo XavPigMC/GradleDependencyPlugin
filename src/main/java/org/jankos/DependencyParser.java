@@ -14,4 +14,8 @@ public class DependencyParser {
         return mapper.readValue(new File(path), new TypeReference<>() {});
 
     }
+
+    public List<Dependency> parsePropertiesFile(String path) throws IOException {
+        return null;
+    }
 }

@@ -3,14 +3,13 @@ import org.jankos.DependencyParser;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
-import java.net.URISyntaxException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class DependencyJsonParseTests {
+public class DependencyJsonParseTest {
     @Test
     public void testParseDependencies() throws IOException {
         String json =
