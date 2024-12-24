@@ -3,19 +3,36 @@ import org.jankos.DependencyParser;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class DependencyPropertiesParseTest {
+public class DependencyUnspecifiedTypeParseTest {
 
   @Test
-  public void testParseDependencies() throws IOException {
+  public void testParseDependenciesFromUnspecifiedJsonFile() {
+    DependencyParser parser = new DependencyParser();
+    String filePath = "src/test/resources/UnspecifiedTypeJson.txt";
+
+    List<Dependency> dependencies = parser.parseDependencies(new File(filePath));
+
+    assertThat(dependencies).isNotNull().hasSize(2);
+
+    assertThat(dependencies.get(0).getGroup()).isEqualTo("org.springframework");
+    assertThat(dependencies.get(0).getName()).isEqualTo("spring-core");
+    assertThat(dependencies.get(0).getVersion()).isEqualTo("5.3.10");
+
+    assertThat(dependencies.get(1).getGroup()).isEqualTo("com.google.guava");
+    assertThat(dependencies.get(1).getName()).isEqualTo("guava");
+    assertThat(dependencies.get(1).getVersion()).isEqualTo("30.1-jre");
+  }
+
+  @Test
+  public void testParseDependenciesFromUnspecifiedPropertiesFile() {
     DependencyParser parser = new DependencyParser();
     String filePath = "src/test/resources/TestDependencies.properties";
 
-    List<Dependency> dependencies = parser.parsePropertiesFile(new File(filePath));
+    List<Dependency> dependencies = parser.parseDependencies(new File(filePath));
 
     assertThat(dependencies).isNotNull().hasSize(2);
 

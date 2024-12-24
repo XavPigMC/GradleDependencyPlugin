@@ -2,56 +2,41 @@ package org.jankos;
 
 import org.gradle.api.Plugin;
 import org.gradle.api.Project;
-import org.gradle.api.logging.Logger;
-import org.gradle.internal.impldep.org.apache.commons.io.IOUtils;
 
 import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
 import java.util.List;
+import java.util.Objects;
 
 @SuppressWarnings("unused")
 public class DependencyParserPlugin implements Plugin<Project> {
 
+  private static final String DEFAULT_DEPENDENCIES_FILE = "dependencies.txt";
+
   @Override
   public void apply(Project target) {
-    String dependenciesFilepath = "dependencies.txt";
-    List<Dependency> dependencyList;
-    Logger logger = target.getLogger();
-    File dependenciesFile = new File(target.getRootDir(), dependenciesFilepath);
+    String dependenciesFilePath =
+        target.hasProperty("dependenciesFile")
+            ? Objects.requireNonNull(target.property("dependenciesFile")).toString()
+            : DEFAULT_DEPENDENCIES_FILE;
+
+    File dependenciesFile = new File(target.getRootDir(), dependenciesFilePath);
+    DependencyParser dependencyParser = new DependencyParser();
 
     if (!dependenciesFile.exists()) {
-      logger.warn(
-          "No dependencies.txt file found in the root directory. Skipping dependency parsing and including.");
+      target
+          .getLogger()
+          .warn("No dependencies file found at: {}", dependenciesFile.getAbsolutePath());
       return;
     }
+
     String fileContent;
+
     try {
-      fileContent = IOUtils.toString(new FileReader(dependenciesFile)).trim();
-    } catch (IOException e) {
-      throw new RuntimeException(e);
-    }
-
-    if (fileContent.startsWith("{") || fileContent.startsWith("[")) {
-      try {
-        dependencyList = new DependencyParser().parseJsonFile(dependenciesFilepath);
-      } catch (IOException e) {
-        throw new RuntimeException(e);
-      }
-    } else {
-      try {
-        dependencyList = new DependencyParser().parsePropertiesFile(dependenciesFilepath);
-      } catch (IOException e) {
-        throw new RuntimeException(e);
-      }
-    }
-
-    for (Dependency dependency : dependencyList) {
-      target
-          .getConfigurations()
-          .getByName("implementation")
-          .getDependencies()
-          .add(target.getDependencies().create(dependency.notation()));
+      List<Dependency> dependencies = dependencyParser.parseDependencies(dependenciesFile);
+      dependencies.forEach(dep -> target.getDependencies().add("implementation", dep.notation()));
+    } catch (RuntimeException e) {
+      target.getLogger().error("Error processing dependencies file", e);
+      throw e;
     }
   }
 }

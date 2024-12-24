@@ -4,13 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b2b08ad4-b6bf-4817-9602-7444f5a98d55" name="Changes" comment="Simple json parsing and testing of said parser">
-      <change afterPath="$PROJECT_DIR$/src/test/resources/TestDependencies.properties" afterDir="false" />
+    <list default="true" id="b2b08ad4-b6bf-4817-9602-7444f5a98d55" name="Changes" comment="Added PROPERTIES file format parsing, and it's testing.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/jankos/Dependency.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/jankos/Dependency.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/jankos/DependencyParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/jankos/DependencyParser.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/jankos/DependencyParserPlugin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/jankos/DependencyParserPlugin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/DependencyJsonParseTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/DependencyJsonParseTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/DependencyPropertiesParseTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/DependencyPropertiesParseTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/PluginTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/PluginTest.java" afterDir="false" />
     </list>
@@ -213,7 +211,7 @@
       <workItem from="1734382929260" duration="971000" />
       <workItem from="1734401321786" duration="598000" />
       <workItem from="1734988905713" duration="1721000" />
-      <workItem from="1735065395748" duration="1391000" />
+      <workItem from="1735065395748" duration="2740000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit">
       <option name="closed" value="true" />
@@ -231,7 +229,15 @@
       <option name="project" value="LOCAL" />
       <updated>1734297456115</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Added PROPERTIES file format parsing, and it's testing.">
+      <option name="closed" value="true" />
+      <created>1735067214041</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1735067214041</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -278,6 +284,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Initial commit" />
     <MESSAGE value="Simple json parsing and testing of said parser" />
-    <option name="LAST_COMMIT_MESSAGE" value="Simple json parsing and testing of said parser" />
+    <MESSAGE value="Added PROPERTIES file format parsing, and it's testing." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added PROPERTIES file format parsing, and it's testing." />
   </component>
 </project>
