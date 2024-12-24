@@ -7,12 +7,13 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
+@EqualsAndHashCode
 public class Dependency {
-    private String group;
-    private String name;
-    private String version;
+  private String group;
+  private String name;
+  private String version;
 
-    public String DependencyNotation(){
-        return group + ":" + name + ":" + version;
-    }
+  public String notation() {
+    return group + ":" + name + ":" + version;
+  }
 }

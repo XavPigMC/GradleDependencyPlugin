@@ -2,7 +2,6 @@ package org.jankos;
 
 import org.gradle.api.Plugin;
 import org.gradle.api.Project;
-import org.gradle.api.artifacts.ModuleDependency;
 import org.gradle.api.logging.Logger;
 import org.gradle.internal.impldep.org.apache.commons.io.IOUtils;
 
@@ -11,6 +10,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.List;
 
+@SuppressWarnings("unused")
 public class DependencyParserPlugin implements Plugin<Project> {
 
   @Override
@@ -51,7 +51,7 @@ public class DependencyParserPlugin implements Plugin<Project> {
           .getConfigurations()
           .getByName("implementation")
           .getDependencies()
-          .add(target.getDependencies().create(dependency.DependencyNotation()));
+          .add(target.getDependencies().create(dependency.notation()));
     }
   }
 }

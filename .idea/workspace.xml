@@ -5,16 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b2b08ad4-b6bf-4817-9602-7444f5a98d55" name="Changes" comment="Simple json parsing and testing of said parser">
-      <change afterPath="$PROJECT_DIR$/src/test/java/DependencyPropertiesParseTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/PluginTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/google-java-format.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/google-java-format.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/TestDependencies.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/jankos/Dependency.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/jankos/Dependency.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/jankos/DependencyParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/jankos/DependencyParser.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/jankos/DependencyParserPlugin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/jankos/DependencyParserPlugin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/DependencyJsonParseTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/DependencyJsonParseTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/DependencyPropertiesParseTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/DependencyPropertiesParseTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/PluginTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/PluginTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,12 +27,26 @@
   <component name="ExternalProjectsManager">
     <system id="GRADLE">
       <state>
+        <task path="$PROJECT_DIR$">
+          <activation />
+        </task>
         <projects_view>
           <tree_state>
             <expand>
               <path>
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
                 <item name="GradleDependencyPlugin" type="f1a62948:ProjectNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="GradleDependencyPlugin" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="GradleDependencyPlugin" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="verification" type="c8890929:TasksNode$1" />
               </path>
             </expand>
             <select />
@@ -78,30 +90,31 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Gradle.DependencyJsonParseTests.testParseDependencies.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.PluginTest.addDependencyTest.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Gradle.DependencyJsonParseTests.testParseDependencies.executor": "Run",
+    "Gradle.GradleDependencyPlugin [test].executor": "Run",
+    "Gradle.PluginTest.addDependencyTest.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "main",
+    "kotlin-language-version-configured": "true",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="org.jankos" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.PluginTest.addDependencyTest">
+  <component name="RunManager" selected="Gradle.GradleDependencyPlugin [test]">
     <configuration name="DependencyJsonParseTests.testParseDependencies" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -124,6 +137,28 @@
       <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
       <DebugAllEnabled>false</DebugAllEnabled>
       <RunAsTest>true</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <configuration name="GradleDependencyPlugin [test]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="test" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>false</RunAsTest>
       <method v="2" />
     </configuration>
     <configuration name="PluginTest.addDependencyTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
@@ -152,6 +187,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Gradle.GradleDependencyPlugin [test]" />
         <item itemvalue="Gradle.PluginTest.addDependencyTest" />
         <item itemvalue="Gradle.DependencyJsonParseTests.testParseDependencies" />
       </list>
@@ -176,6 +212,8 @@
       <workItem from="1734295301394" duration="5816000" />
       <workItem from="1734382929260" duration="971000" />
       <workItem from="1734401321786" duration="598000" />
+      <workItem from="1734988905713" duration="1721000" />
+      <workItem from="1735065395748" duration="1391000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit">
       <option name="closed" value="true" />
