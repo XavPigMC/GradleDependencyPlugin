@@ -182,6 +182,7 @@ public class PluginTest {
                 """;
     Files.write(dependenciesFile.toPath(), propertiesContent.getBytes());
 
+
     var result =
         GradleRunner.create()
             .withProjectDir(testProjectDir)
