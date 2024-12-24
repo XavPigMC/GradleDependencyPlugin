@@ -14,20 +14,28 @@ public class DependencyParserPlugin implements Plugin<Project> {
 
   @Override
   public void apply(Project target) {
-    String dependenciesFilePath =
-        target.hasProperty("dependenciesFile")
-            ? Objects.requireNonNull(target.property("dependenciesFile")).toString()
-            : DEFAULT_DEPENDENCIES_FILE;
+    File dependenciesFile;
+    if (target.hasProperty("dependenciesFile")) {
+      target.getLogger().info("Using custom dependencies file");
+      String dependenciesFilePath =
+          Objects.requireNonNull(target.property("dependenciesFile")).toString();
+      dependenciesFile = new File(target.getRootDir(), dependenciesFilePath);
+      if (!dependenciesFile.exists()) {
+        throw new IllegalArgumentException(dependenciesFilePath + " does not exist");
+      }
+    } else {
+      target.getLogger().info("Using default dependencies file");
+      dependenciesFile = new File(target.getRootDir(), DEFAULT_DEPENDENCIES_FILE);
 
-    File dependenciesFile = new File(target.getRootDir(), dependenciesFilePath);
-    DependencyParser dependencyParser = new DependencyParser();
-
-    if (!dependenciesFile.exists()) {
-      target
-          .getLogger()
-          .warn("No dependencies file found at: {}", dependenciesFile.getAbsolutePath());
-      return;
+      if (!dependenciesFile.exists()) {
+        target
+            .getLogger()
+            .warn("No dependencies file found at: {}", dependenciesFile.getAbsolutePath());
+        return;
+      }
     }
+
+    DependencyParser dependencyParser = new DependencyParser();
 
     String fileContent;
 

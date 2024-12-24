@@ -23,6 +23,7 @@ gradlePlugin {
 
 repositories {
     mavenCentral()
+    mavenLocal()
 }
 
 dependencies {
@@ -54,6 +55,11 @@ publishing {
 }
 
 test {
+    testLogging {
+        events 'passed', 'failed', 'skipped'
+        showStandardStreams = true
+        exceptionFormat 'full'
+    }
     testLogging.showStandardStreams = true
     useJUnitPlatform()
 }

@@ -4,12 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b2b08ad4-b6bf-4817-9602-7444f5a98d55" name="Changes" comment="Added PROPERTIES file format parsing, and it's testing.">
+    <list default="true" id="b2b08ad4-b6bf-4817-9602-7444f5a98d55" name="Changes" comment="Refactoring of moving all parsing logic (including deciding which type of parser to use) to the DependencyParser class. Added parsing unit tests (DependencyUnspecifiedTypeParse) for that logic.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/jankos/DependencyParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/jankos/DependencyParser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/jankos/DependencyParserPlugin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/jankos/DependencyParserPlugin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/DependencyJsonParseTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/DependencyJsonParseTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/DependencyPropertiesParseTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/DependencyPropertiesParseTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/PluginTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/PluginTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -91,9 +89,12 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "Gradle.DependencyJsonParseTests.testParseDependencies.executor": "Run",
+    "Gradle.GradleDependencyPlugin [clean].executor": "Run",
     "Gradle.GradleDependencyPlugin [test].executor": "Run",
     "Gradle.PluginTest.addDependencyTest.executor": "Run",
+    "Gradle.PluginTest.testPluginAddsDependenciesFromCustomDependenciesFile.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
     "node.js.detected.package.eslint": "true",
@@ -135,6 +136,28 @@
       <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
       <DebugAllEnabled>false</DebugAllEnabled>
       <RunAsTest>true</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <configuration name="GradleDependencyPlugin [clean]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="clean" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>false</RunAsTest>
       <method v="2" />
     </configuration>
     <configuration name="GradleDependencyPlugin [test]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
@@ -183,9 +206,35 @@
       <RunAsTest>true</RunAsTest>
       <method v="2" />
     </configuration>
+    <configuration name="PluginTest.testPluginAddsDependenciesFromCustomDependenciesFile" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;PluginTest.testPluginAddsDependenciesFromCustomDependenciesFile&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>true</RunAsTest>
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Gradle.GradleDependencyPlugin [test]" />
+        <item itemvalue="Gradle.PluginTest.testPluginAddsDependenciesFromCustomDependenciesFile" />
+        <item itemvalue="Gradle.GradleDependencyPlugin [clean]" />
         <item itemvalue="Gradle.PluginTest.addDependencyTest" />
         <item itemvalue="Gradle.DependencyJsonParseTests.testParseDependencies" />
       </list>
@@ -211,7 +260,8 @@
       <workItem from="1734382929260" duration="971000" />
       <workItem from="1734401321786" duration="598000" />
       <workItem from="1734988905713" duration="1721000" />
-      <workItem from="1735065395748" duration="2740000" />
+      <workItem from="1735065395748" duration="4807000" />
+      <workItem from="1735070442659" duration="3874000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit">
       <option name="closed" value="true" />
@@ -237,7 +287,15 @@
       <option name="project" value="LOCAL" />
       <updated>1735067214041</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Refactoring of moving all parsing logic (including deciding which type of parser to use) to the DependencyParser class. Added parsing unit tests (DependencyUnspecifiedTypeParse) for that logic.">
+      <option name="closed" value="true" />
+      <created>1735068832463</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1735068832463</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -285,6 +343,7 @@
     <MESSAGE value="Initial commit" />
     <MESSAGE value="Simple json parsing and testing of said parser" />
     <MESSAGE value="Added PROPERTIES file format parsing, and it's testing." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added PROPERTIES file format parsing, and it's testing." />
+    <MESSAGE value="Refactoring of moving all parsing logic (including deciding which type of parser to use) to the DependencyParser class. Added parsing unit tests (DependencyUnspecifiedTypeParse) for that logic." />
+    <option name="LAST_COMMIT_MESSAGE" value="Refactoring of moving all parsing logic (including deciding which type of parser to use) to the DependencyParser class. Added parsing unit tests (DependencyUnspecifiedTypeParse) for that logic." />
   </component>
 </project>
